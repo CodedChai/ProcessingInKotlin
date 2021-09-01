@@ -1,5 +1,3 @@
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import processing.core.PApplet
 import kotlin.random.Random
 
@@ -42,71 +40,51 @@ class CirclePackingRandomly : PApplet() {
   }
 
   private fun addCirclesRandomly() {
-    runBlocking {
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 110f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 90f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 50f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 50f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 40f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 40f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 20f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(0f, height.toFloat()),
-          random(3f, 10f)
-        )
-      }
-      launch {
-        addCircleIfNoCollision(
-          random(0f, width.toFloat()),
-          random(height.toFloat() / 2, height.toFloat()),
-          random(5f, 10f)
-        )
-      }
-    }
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 110f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 90f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 50f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 50f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 40f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 40f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 20f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(0f, height.toFloat()),
+      random(3f, 10f)
+    )
+    addCircleIfNoCollision(
+      random(0f, width.toFloat()),
+      random(height.toFloat() / 2, height.toFloat()),
+      random(5f, 10f)
+    )
   }
 
   fun addCircleIfNoCollision(x: Float, y: Float, radius: Float) {
