@@ -1,7 +1,7 @@
 import processing.core.PApplet
 import kotlin.random.Random
 
-class CirclePackingRandomly : PApplet() {
+class CirclePackingRandomlyRealtime : PApplet() {
 
   val maxScreenSize = 1600
   val random = Random(maxScreenSize) // use resolution as the seed for some consistency
@@ -19,7 +19,7 @@ class CirclePackingRandomly : PApplet() {
   override fun setup() {
     noStroke()
     smooth()
-    surface.setTitle("Random Circle Packing")
+    surface.setTitle("Random Circle Packing in Realtime")
     surface.setResizable(true)
     surface.setLocation(100, 100)
   }
@@ -110,7 +110,7 @@ class CirclePackingRandomly : PApplet() {
 }
 
 fun main() {
-  PApplet.main("CirclePackingRandomly")
+  PApplet.main("CirclePackingRandomlyRealtime")
 }
 
 data class Circle(

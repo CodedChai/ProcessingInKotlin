@@ -15,6 +15,9 @@ class CubeGrid : PApplet() {
 
   override fun setup() {
     cube = createGraphics(width, height, P3D)
+    smooth()
+    surface.setResizable(true)
+    surface.setLocation(100, 100)
   }
 
   override fun settings() {

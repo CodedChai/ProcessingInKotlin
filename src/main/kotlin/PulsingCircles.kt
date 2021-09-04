@@ -8,6 +8,9 @@ class PulsingCircles : PApplet() {
 
   override fun setup() {
     noStroke()
+    smooth()
+    surface.setResizable(true)
+    surface.setLocation(100, 100)
   }
 
   override fun settings() {
