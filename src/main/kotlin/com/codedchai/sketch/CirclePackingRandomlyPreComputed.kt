@@ -21,6 +21,11 @@ class CirclePackingRandomlyPreComputed : PApplet() {
     surface.setTitle("Random Circle Packing Pre-Computed")
     surface.setResizable(true)
     surface.setLocation(100, 100)
+
+    while (circles.size <= 6000) {
+      addCirclesRandomly()
+    }
+
     noLoop()
   }
 
@@ -30,7 +35,6 @@ class CirclePackingRandomlyPreComputed : PApplet() {
 
   override fun draw() {
     background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
-    addCirclesRandomly()
 
     circles.forEach {
       fill(it.color.r, it.color.g, it.color.b)
