@@ -1,3 +1,5 @@
+import com.codedchai.constants.RgbColorSchemeConstants
+import com.codedchai.domain.Circle
 import processing.core.PApplet
 import kotlin.random.Random
 
@@ -6,14 +8,9 @@ class CirclePackingRandomlyRealtime : PApplet() {
   val maxScreenSize = 1600
   val random = Random(maxScreenSize) // use resolution as the seed for some consistency
 
-  val circleColors = listOf(
-    DARK_SEA_GREEN,
-    SAGE,
-    DESERT_SAND,
-    MILK,
-    TAUPE_GRAY
-  )
-  val circleColorsSize = circleColors.size
+  val colorScheme = RgbColorSchemeConstants.GREEN_PASTELS
+
+  val circleColorsSize = colorScheme.colors.size
   val circles: MutableList<Circle> = mutableListOf()
 
   override fun setup() {
@@ -29,7 +26,7 @@ class CirclePackingRandomlyRealtime : PApplet() {
   }
 
   override fun draw() {
-    background(237f, 234f, 228f)
+    background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
     addCirclesRandomly()
 
     circles.forEach {
@@ -88,7 +85,7 @@ class CirclePackingRandomlyRealtime : PApplet() {
   }
 
   fun addCircleIfNoCollision(x: Float, y: Float, radius: Float) {
-    val color = circleColors[random.nextInt(circleColorsSize)]
+    val color = colorScheme.colors[random.nextInt(circleColorsSize)]
 
     val circle = Circle(x, y, radius, color)
     if (!collidesWithExistingCircles(circle)) {
@@ -99,26 +96,8 @@ class CirclePackingRandomlyRealtime : PApplet() {
   fun collidesWithExistingCircles(circle: Circle): Boolean {
     return circles.any { dist(it.x, it.y, circle.x, circle.y) < (it.radius + circle.radius) }
   }
-
-  companion object {
-    val DARK_SEA_GREEN = CircleColor(145f, 179f, 131f)
-    val SAGE = CircleColor(197f, 193f, 139f)
-    val DESERT_SAND = CircleColor(221f, 211f, 172f)
-    val MILK = CircleColor(255f, 253f, 246f)
-    val TAUPE_GRAY = CircleColor(138f, 137f, 133f)
-  }
 }
 
 fun main() {
   PApplet.main("CirclePackingRandomlyRealtime")
 }
-
-data class Circle(
-  val x: Float,
-  val y: Float,
-  val radius: Float,
-  val color: CircleColor
-)
-
-data class CircleColor(val r: Float, val g: Float, val b: Float)
-
