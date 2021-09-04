@@ -63,5 +63,5 @@ class CubeGrid : PApplet() {
 }
 
 fun main() {
-  PApplet.main("CubeGrid")
+  PApplet.main("com.codedchai.sketch.CubeGrid")
 }

@@ -35,5 +35,5 @@ class PulsingCircles : PApplet() {
 }
 
 fun main() {
-  PApplet.main("PulsingCircles")
+  PApplet.main("com.codedchai.sketch.PulsingCircles")
 }

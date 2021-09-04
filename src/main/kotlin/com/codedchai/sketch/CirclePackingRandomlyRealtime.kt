@@ -99,5 +99,5 @@ class CirclePackingRandomlyRealtime : PApplet() {
 }
 
 fun main() {
-  PApplet.main("CirclePackingRandomlyRealtime")
+  PApplet.main("com.codedchai.sketch.CirclePackingRandomlyRealtime")
 }

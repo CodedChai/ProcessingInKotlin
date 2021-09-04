@@ -21,6 +21,7 @@ class CirclePackingRandomlyPreComputed : PApplet() {
     surface.setTitle("Random Circle Packing Pre-Computed")
     surface.setResizable(true)
     surface.setLocation(100, 100)
+    noLoop()
   }
 
   override fun settings() {
@@ -100,8 +101,5 @@ class CirclePackingRandomlyPreComputed : PApplet() {
 }
 
 fun main() {
-  PApplet.main("CirclePackingRandomlyPreComputed")
+  PApplet.main("com.codedchai.sketch.CirclePackingRandomlyPreComputed")
 }
-
-
-

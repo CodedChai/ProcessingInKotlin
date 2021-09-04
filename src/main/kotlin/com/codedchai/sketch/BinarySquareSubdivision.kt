@@ -95,5 +95,5 @@ data class Coordinate(
 )
 
 fun main() {
-  PApplet.main("BinarySquareSubdivision")
+  PApplet.main("com.codedchai.sketch.BinarySquareSubdivision")
 }
