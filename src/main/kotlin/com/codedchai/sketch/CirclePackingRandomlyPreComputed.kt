@@ -105,5 +105,5 @@ class CirclePackingRandomlyPreComputed : PApplet() {
 }
 
 fun main() {
-  PApplet.main("com.codedchai.sketch.CirclePackingRandomlyPreComputed")
+  PApplet.main("${CirclePackingRandomlyPreComputed::class.java.packageName}.${CirclePackingRandomlyPreComputed::class.java.simpleName}")
 }
