@@ -17,8 +17,14 @@ class CirclePackingInArbitraryPolygon : PApplet() {
   val circleColorsSize = colorScheme.colors.size
   val circles: MutableList<Circle> = mutableListOf()
 
-  val triangleOnLeftPolygon = listOf(Coordinate(100f, 100f), Coordinate(800f, 400f), Coordinate(200f, 1400f))
-  val kShapePolygon = listOf(Coordinate(200f, 100f), Coordinate(1200f, 100f), Coordinate(400f, 700f), Coordinate(1200f, 1300f), Coordinate(200f, 1300f))
+  val triangleOnLeftPolygon = listOf(Coordinate(maxScreenSize / 16f, maxScreenSize / 16f), Coordinate(maxScreenSize * .5f, maxScreenSize * .25f), Coordinate(maxScreenSize * .125f, maxScreenSize * .875f))
+  val kShapePolygon = listOf(
+    Coordinate(maxScreenSize * .125f, 100f),
+    Coordinate(maxScreenSize * .75f, maxScreenSize / 16f),
+    Coordinate(maxScreenSize * .25f, maxScreenSize * .45f),
+    Coordinate(maxScreenSize * .75f, maxScreenSize * .8f),
+    Coordinate(maxScreenSize * .125f, maxScreenSize * .8f)
+  )
   val anotherShapePolygon =
     listOf(Coordinate(maxScreenSize * .25f, 0f), Coordinate(maxScreenSize * 1f, maxScreenSize * 0.1f), Coordinate(maxScreenSize * .9f, maxScreenSize * .9f), Coordinate(maxScreenSize * .5f, maxScreenSize * .95f))
 
