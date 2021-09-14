@@ -8,7 +8,7 @@ class PerlinSineWaves : PApplet() {
   override fun setup() {
     background(10)
     surface.setResizable(true)
-    surface.setLocation(100, 100)
+    surface.setLocation(0, 0)
   }
 
   fun sineWave(minY: Float, maxY: Float, frameCountScalarValue: Float = .01f): List<Coordinate> {
