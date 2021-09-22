@@ -23,5 +23,11 @@ class RgbColorConstants {
     val CADET_BLUE = RgbColor(83f, 157f, 164f)
     val SALMON = RgbColor(241f, 128f, 110f)
     val SUNRAY = RgbColor(235f, 186f, 89f)
+
+    val YELLOW_ORANGE = RgbColor(255f, 157f, 10f)
+    val SAFETY_ORANGE = RgbColor(255f, 108f, 0f)
+    val AMARANTH_PURPLE = RgbColor(160f, 43f, 79f)
+    val RUSSIAN_VIOLET = RgbColor(37f, 26f, 91f)
+    val BLACK_CORAL = RgbColor(93f, 98f, 115f)
   }
 }

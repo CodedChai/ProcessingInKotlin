@@ -32,9 +32,7 @@ class CirclePackingFromImage : PApplet() {
     while (circles.size <= 7000) {
       addCirclesRandomly()
     }
-
-    circlePackingImage.get(0, 0)
-
+    
     noLoop()
   }
 

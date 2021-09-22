@@ -27,12 +27,12 @@ class SimpleFlowField : PApplet() {
 
     for (x in 0..width) {
       for (y in 0..height) {
-        val scaled_x = x * 0.005f
-        val scaled_y = y * 0.005f
+        val scaledX = x * 0.005f
+        val scaledY = y * 0.005f
 
-        val noise_val = noise(scaled_x, scaled_y)
+        val noiseValue = noise(scaledX, scaledY)
 
-        val angle = map(noise_val, 0.0f, 1.0f, 0.0f, PI * 2.0f)
+        val angle = map(noiseValue, 0.0f, 1.0f, 0.0f, PI * 2.0f)
         angleGrid[Coordinate(x, y)] = angle
       }
     }
@@ -79,7 +79,7 @@ class SimpleFlowField : PApplet() {
     val angleGrid = buildNoiseGrid()
     // visualizeGrid(angleGrid)
 
-    val numLines = 900
+    val numLines = 3000
     runBlocking {
       repeat(numLines) {
         launch {
