@@ -1,4 +1,4 @@
-package com.codedchai.sketch
+package com.codedchai.sketch.circlepacking
 
 
 import com.codedchai.constants.RgbColorSchemeConstants
@@ -32,7 +32,7 @@ class CirclePackingFromImage : PApplet() {
     while (circles.size <= 7000) {
       addCirclesRandomly()
     }
-    
+
     noLoop()
   }
 

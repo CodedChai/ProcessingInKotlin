@@ -1,4 +1,4 @@
-package com.codedchai.sketch
+package com.codedchai.sketch.animation
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

@@ -1,4 +1,4 @@
-package com.codedchai.sketch
+package com.codedchai.sketch.flowfield
 
 import com.codedchai.domain.Coordinate
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.codedchai.sketch
+package com.codedchai.sketch.animation
 
 import com.codedchai.domain.Coordinate
 import processing.core.PApplet

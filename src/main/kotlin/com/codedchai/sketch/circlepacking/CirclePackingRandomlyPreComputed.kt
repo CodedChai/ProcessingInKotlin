@@ -1,9 +1,11 @@
+package com.codedchai.sketch.circlepacking
+
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle
 import processing.core.PApplet
 import kotlin.random.Random
 
-class CirclePackingRandomlyRealtime : PApplet() {
+class CirclePackingRandomlyPreComputed : PApplet() {
 
   val maxScreenSize = 1600
   val random = Random(maxScreenSize) // use resolution as the seed for some consistency
@@ -16,9 +18,15 @@ class CirclePackingRandomlyRealtime : PApplet() {
   override fun setup() {
     noStroke()
     smooth()
-    surface.setTitle("Random Circle Packing in Realtime")
+    surface.setTitle("Random Circle Packing Pre-Computed")
     surface.setResizable(true)
     surface.setLocation(100, 100)
+
+    while (circles.size <= 6000) {
+      addCirclesRandomly()
+    }
+
+    noLoop()
   }
 
   override fun settings() {
@@ -27,13 +35,11 @@ class CirclePackingRandomlyRealtime : PApplet() {
 
   override fun draw() {
     background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
-    addCirclesRandomly()
 
     circles.forEach {
       fill(it.color.r, it.color.g, it.color.b)
       circle(it.x, it.y, it.radius * 2f)
     }
-
   }
 
   private fun addCirclesRandomly() {
@@ -99,5 +105,5 @@ class CirclePackingRandomlyRealtime : PApplet() {
 }
 
 fun main() {
-  PApplet.main("com.codedchai.sketch.CirclePackingRandomlyRealtime")
+  PApplet.main("${CirclePackingRandomlyPreComputed::class.java.packageName}.${CirclePackingRandomlyPreComputed::class.java.simpleName}")
 }

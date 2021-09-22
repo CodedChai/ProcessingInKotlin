@@ -1,4 +1,4 @@
-package com.codedchai.sketch
+package com.codedchai.sketch.circlepacking
 
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle

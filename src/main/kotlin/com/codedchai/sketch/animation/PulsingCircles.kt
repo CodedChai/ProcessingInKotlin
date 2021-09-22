@@ -1,4 +1,4 @@
-package com.codedchai.sketch
+package com.codedchai.sketch.animation
 
 import processing.core.PApplet
 
