@@ -4,6 +4,7 @@ import com.codedchai.constants.RgbColorConstants
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle
 import processing.core.PApplet
+import processing.core.PGraphics
 import java.time.OffsetDateTime
 
 class CirclePackingLogarithmicSpiral : PApplet() {
@@ -12,18 +13,22 @@ class CirclePackingLogarithmicSpiral : PApplet() {
   val circleColorsSize = colorScheme.colors.size
   val circles = mutableListOf<Circle>()
   val spiral = mutableListOf<Circle>()
+  lateinit var pGraphics: PGraphics
 
   override fun draw() {
-    background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
+    pGraphics.beginDraw()
+    pGraphics.background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
 
     circles.forEach {
-      fill(it.color.r, it.color.g, it.color.b)
-      circle(it.x, it.y, it.radius * 2f)
+      pGraphics.fill(it.color.r, it.color.g, it.color.b)
+      pGraphics.circle(it.x, it.y, it.radius * 2f)
     }
+    pGraphics.filter(GRAY)
+    pGraphics.endDraw()
 
     val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
     val formattedDate = OffsetDateTime.now().toEpochSecond()
-    save("${imageDirectory}circle-packing-spiral-output-$formattedDate.png")
+    pGraphics.save("${imageDirectory}circle-packing-spiral-output-$formattedDate.tiff")
   }
 
   fun buildLogarithmicSpiral(a: Float, b: Float, thetaStep: Float, thetaMax: Float): List<Circle> {
@@ -34,7 +39,7 @@ class CirclePackingLogarithmicSpiral : PApplet() {
       val x = a * cos(theta) * exp(b * theta)
       val y = a * sin(theta) * exp(b * theta)
       val radiusFromTheta = pow(map(pow(theta, 2f), 0f, pow(60f, 2f), 0f, 21f), 2.8f)
-      spiralCircles.add(Circle(x + width / 2f, y + height / 2f, radiusFromTheta, RgbColorConstants.IMPERIAL_PURPLE))
+      spiralCircles.add(Circle(x + 2250 / 2f, y + 3000 / 2f, radiusFromTheta, RgbColorConstants.IMPERIAL_PURPLE))
       theta += thetaStep
     }
 
@@ -42,6 +47,8 @@ class CirclePackingLogarithmicSpiral : PApplet() {
   }
 
   override fun setup() {
+    pGraphics = createGraphics(2250, 3000)
+
     background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
     surface.setResizable(true)
     surface.setLocation(0, 0)
@@ -56,48 +63,48 @@ class CirclePackingLogarithmicSpiral : PApplet() {
 
   private fun addCirclesRandomly() {
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(3f, 110f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(3f, 90f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(3f, 50f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(3f, 50f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(3f, 40f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(1f, 40f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(3f, 20f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(0f, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(0f, 3000.toFloat()),
       random(1f, 10f)
     )
     addCircleIfNoCollision(
-      random(0f, width.toFloat()),
-      random(height.toFloat() / 2, height.toFloat()),
+      random(0f, 2250.toFloat()),
+      random(3000.toFloat() / 2, 3000.toFloat()),
       random(1f, 10f)
     )
   }
@@ -120,7 +127,7 @@ class CirclePackingLogarithmicSpiral : PApplet() {
   }
 
   override fun settings() {
-    size(1600, 1600, P2D)
+    size(2250, 3000, P2D)
   }
 }
 
