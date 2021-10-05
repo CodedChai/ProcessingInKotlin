@@ -5,4 +5,29 @@ data class Coordinate(
   val y: Float
 ) {
   constructor(x: Int, y: Int) : this(x.toFloat(), y.toFloat())
+
+  operator fun plus(increment: Int): Coordinate {
+    return Coordinate(x + increment, y + increment)
+  }
+
+  operator fun plus(increment: Float): Coordinate {
+    return Coordinate(x + increment, y + increment)
+  }
+
+  operator fun plus(coordinate: Coordinate): Coordinate {
+    return Coordinate(x + coordinate.x, y + coordinate.y)
+  }
+
+  operator fun minus(increment: Int): Coordinate {
+    return Coordinate(x - increment, y - increment)
+  }
+
+  operator fun minus(increment: Float): Coordinate {
+    return Coordinate(x - increment, y - increment)
+  }
+
+  operator fun minus(coordinate: Coordinate): Coordinate {
+    return Coordinate(x - coordinate.x, y - coordinate.y)
+  }
+
 }
