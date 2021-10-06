@@ -10,7 +10,6 @@ import java.time.OffsetDateTime
 class CirclePackingLogarithmicSpiral : PApplet() {
 
   val colorScheme = RgbColorSchemeConstants.GREEN_PASTELS
-  val circleColorsSize = colorScheme.colors.size
   val circles = mutableListOf<Circle>()
   val spiral = mutableListOf<Circle>()
   lateinit var pGraphics: PGraphics
@@ -23,7 +22,7 @@ class CirclePackingLogarithmicSpiral : PApplet() {
       pGraphics.fill(it.color.r, it.color.g, it.color.b)
       pGraphics.circle(it.x, it.y, it.radius * 2f)
     }
-    pGraphics.filter(GRAY)
+    // pGraphics.filter(GRAY)
     pGraphics.endDraw()
 
     val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
@@ -110,9 +109,7 @@ class CirclePackingLogarithmicSpiral : PApplet() {
   }
 
   fun addCircleIfNoCollision(x: Float, y: Float, radius: Float) {
-    val color = colorScheme.colors[random(circleColorsSize.toFloat()).toInt()]
-
-    val circle = Circle(x, y, radius, color)
+    val circle = Circle(x, y, radius, colorScheme.randomColor())
     if (spiralContainsCircle(circle) && !collidesWithExistingCircles(circle)) {
       circles.add(circle)
     }

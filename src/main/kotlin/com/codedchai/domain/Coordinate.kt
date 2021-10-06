@@ -18,6 +18,10 @@ data class Coordinate(
     return Coordinate(x + coordinate.x, y + coordinate.y)
   }
 
+  operator fun plus(vec2: Vec2): Coordinate {
+    return Coordinate(x + vec2.x, y + vec2.y)
+  }
+  
   operator fun minus(increment: Int): Coordinate {
     return Coordinate(x - increment, y - increment)
   }

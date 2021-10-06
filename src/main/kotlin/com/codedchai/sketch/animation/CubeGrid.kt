@@ -37,6 +37,13 @@ class CubeGrid : PApplet() {
         }
       }
     }
+
+    val animationDirectory = "C:\\Users\\Connor\\Pictures\\animations\\"
+    saveFrame("${animationDirectory}${CubeGrid::class.java.simpleName}-######.png");
+
+    if (frameCount == 720) {
+      exit()
+    }
   }
 
   fun drawCube(index: Int) {
@@ -54,14 +61,14 @@ class CubeGrid : PApplet() {
     val maxRotation = PI * 2
     val xRotation = (maxRotation / numCubesInRow) * (row - numCubesInRow / 2) - PI
     val yRotation = (maxRotation / numCubesInRow) * (column - numCubesInRow / 2) - PI
-    cube.rotateX((frameCount / 20.0F) + xRotation)
+    cube.rotateX(radians(frameCount / 2.0F) + xRotation)
     //cube.rotateY((frameCount / 20.0F) + yRotation)
-    cube.rotateZ((frameCount / 20.0F) + yRotation)
+    cube.rotateZ(radians(frameCount / 2.0F) + yRotation)
     cube.box(cubeSize)
     cube.endDraw()
   }
 }
 
 fun main() {
-  PApplet.main("com.codedchai.sketch.CubeGrid")
+  PApplet.main("${CubeGrid::class.java.packageName}.${CubeGrid::class.java.simpleName}")
 }
