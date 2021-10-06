@@ -67,7 +67,7 @@ class TriangleContainingTriangle : PApplet() {
       return
     }
 
-    triangles.add(Triangle(centerPoint, sideLength, colorScheme.randomColor(), isUpsideDown))
+    triangles.add(Triangle(centerPoint, sideLength, colorScheme.randomColor(), 0f, isUpsideDown))
 
     buildTrianglesAtPoint(centerPoint, sideLength - sideLengthStep, isUpsideDown)
   }

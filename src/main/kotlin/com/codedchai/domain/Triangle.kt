@@ -3,14 +3,15 @@ package com.codedchai.domain
 import kotlin.math.sqrt
 
 data class Triangle(
-  val centerPoint: Coordinate,
-  val sideLength: Float,
-  val color: RgbColor,
-  val isUpsideDown: Boolean = false
+  var centerPoint: Coordinate,
+  var sideLength: Float,
+  var color: RgbColor,
+  var rotation: Float = 0f,
+  var isUpsideDown: Boolean = false
 ) {
 
-  constructor(x: Int, y: Int, sideLength: Float, color: RgbColor, isUpsideDown: Boolean = false) : this(Coordinate(x.toFloat(), y.toFloat()), sideLength, color, isUpsideDown)
-  constructor(x: Float, y: Float, sideLength: Float, color: RgbColor, isUpsideDown: Boolean = false) : this(Coordinate(x, y), sideLength, color, isUpsideDown)
+  constructor(x: Int, y: Int, sideLength: Float, color: RgbColor, rotation: Float = 0f, isUpsideDown: Boolean = false) : this(Coordinate(x.toFloat(), y.toFloat()), sideLength, color, rotation, isUpsideDown)
+  constructor(x: Float, y: Float, sideLength: Float, color: RgbColor, rotation: Float = 0f, isUpsideDown: Boolean = false) : this(Coordinate(x, y), sideLength, color, rotation, isUpsideDown)
 
   fun pointA(): Coordinate {
     return if (isUpsideDown) {
