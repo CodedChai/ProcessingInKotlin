@@ -13,7 +13,7 @@ class TriangleContainingTriangle : PApplet() {
   val triangles = mutableListOf<Triangle>()
   lateinit var pGraphics: PGraphics
 
-  val sideLengthStep = 50f
+  val sideLengthStep = 10f
 
   val shouldSaveImage = true
 
@@ -79,7 +79,7 @@ class TriangleContainingTriangle : PApplet() {
     surface.setResizable(true)
     surface.setLocation(0, 0)
 
-    buildTriangles(width / 5f)
+    buildTriangles(width / 15f)
 
     noLoop()
   }
