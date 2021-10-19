@@ -3,6 +3,8 @@ package com.codedchai.sketch.circlepacking
 import com.codedchai.constants.RgbColorConstants
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle
+import com.codedchai.extensions.backgroundColor
+import com.codedchai.extensions.drawCircle
 import processing.core.PApplet
 import processing.core.PGraphics
 import java.time.OffsetDateTime
@@ -16,11 +18,11 @@ class CirclePackingLogarithmicSpiral : PApplet() {
 
   override fun draw() {
     pGraphics.beginDraw()
-    pGraphics.background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
+    pGraphics.noStroke()
+    pGraphics.backgroundColor(colorScheme)
 
     circles.forEach {
-      pGraphics.fill(it.color.r, it.color.g, it.color.b)
-      pGraphics.circle(it.x, it.y, it.radius * 2f)
+      pGraphics.drawCircle(it)
     }
     // pGraphics.filter(GRAY)
     pGraphics.endDraw()

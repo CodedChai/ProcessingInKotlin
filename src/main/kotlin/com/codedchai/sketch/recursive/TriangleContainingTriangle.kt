@@ -3,6 +3,8 @@ package com.codedchai.sketch.recursive
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Coordinate
 import com.codedchai.domain.Triangle
+import com.codedchai.extensions.backgroundColor
+import com.codedchai.extensions.drawTriangle
 import processing.core.PApplet
 import processing.core.PGraphics
 import java.time.OffsetDateTime
@@ -19,17 +21,13 @@ class TriangleContainingTriangle : PApplet() {
 
   override fun draw() {
     pGraphics.beginDraw()
-    pGraphics.background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
+    pGraphics.backgroundColor(colorScheme)
 
     pGraphics.strokeWeight(5f)
     pGraphics.noFill()
 
     triangles.forEach {
-      pGraphics.stroke(it.color.r, it.color.g, it.color.b)
-      val pointA = it.pointA()
-      val pointB = it.pointB()
-      val pointC = it.pointC()
-      pGraphics.triangle(pointA.x, pointA.y, pointB.x, pointB.y, pointC.x, pointC.y)
+      pGraphics.drawTriangle(it)
     }
 
     //   pGraphics.filter(GRAY)

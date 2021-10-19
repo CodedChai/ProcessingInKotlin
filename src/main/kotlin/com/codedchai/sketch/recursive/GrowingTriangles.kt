@@ -3,6 +3,7 @@ package com.codedchai.sketch.recursive
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Coordinate
 import com.codedchai.domain.Triangle
+import com.codedchai.extensions.drawTriangle
 import processing.core.PApplet
 import processing.core.PGraphics
 import java.time.OffsetDateTime
@@ -24,15 +25,7 @@ class GrowingTriangles : PApplet() {
     pGraphics.noFill()
 
     triangles.forEach {
-      pGraphics.pushMatrix()
-      pGraphics.translate(width / 2f, height / 2f)
-      pGraphics.rotate(radians(it.rotation))
-      pGraphics.stroke(it.color.r, it.color.g, it.color.b)
-      val pointA = it.pointA()
-      val pointB = it.pointB()
-      val pointC = it.pointC()
-      pGraphics.triangle(pointA.x, pointA.y, pointB.x, pointB.y, pointC.x, pointC.y)
-      pGraphics.popMatrix()
+      pGraphics.drawTriangle(it, width / 2f, height / 2f)
     }
 
     //   pGraphics.filter(GRAY)
