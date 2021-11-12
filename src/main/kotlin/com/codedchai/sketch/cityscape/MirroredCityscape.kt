@@ -1,16 +1,14 @@
 package com.codedchai.sketch.cityscape
 
-import com.codedchai.constants.RgbColorSchemeConstants
 import processing.core.PApplet
 import processing.core.PGraphics
 import java.time.OffsetDateTime
 
 class MirroredCityscape : PApplet() {
 
-  val colorScheme = RgbColorSchemeConstants.SOFT_AND_ROYAL
   lateinit var pGraphics: PGraphics
 
-  val shouldSaveImage = true
+  val shouldSaveImage = false
   var shouldSaveAnimation = false
   val formattedDate = OffsetDateTime.now().toEpochSecond()
 
