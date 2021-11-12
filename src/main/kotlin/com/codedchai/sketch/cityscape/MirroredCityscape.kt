@@ -14,7 +14,7 @@ class MirroredCityscape : PApplet() {
   var shouldSaveAnimation = false
   val formattedDate = OffsetDateTime.now().toEpochSecond()
 
-  fun drawBox(x: Float, z: Float) {
+  fun drawBoxMirrored(x: Float, z: Float) {
     val height = random(250f, 415f)
     val fill = random(190f, 225f)
 
@@ -40,7 +40,7 @@ class MirroredCityscape : PApplet() {
 
     (-12..17).forEach { x ->
       (-31..5).forEach { z ->
-        drawBox(x * xStep, z * zStep)
+        drawBoxMirrored(x * xStep, z * zStep)
       }
     }
 
