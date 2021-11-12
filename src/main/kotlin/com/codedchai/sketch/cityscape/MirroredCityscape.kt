@@ -48,7 +48,7 @@ class MirroredCityscape : PApplet() {
 
     if (shouldSaveImage) {
       val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
-      save("${imageDirectory}${MirroredCityscape::class.java.simpleName}-$formattedDate.png")
+      pGraphics.save("${imageDirectory}${MirroredCityscape::class.java.simpleName}-$formattedDate.png")
     }
 
     if (shouldSaveAnimation) {
