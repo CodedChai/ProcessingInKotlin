@@ -16,7 +16,7 @@ class AvoidanceWalker : PApplet() {
   lateinit var pGraphics: PGraphics
 
   val shouldSaveImage = false
-  var shouldSaveAnimation = true
+  var shouldSaveAnimation = false
   val formattedDate = OffsetDateTime.now().toEpochSecond()
 
   val directionalVectors = listOf(
@@ -57,7 +57,7 @@ class AvoidanceWalker : PApplet() {
 
     if (shouldSaveAnimation) {
       val animationDirectory = "C:\\Users\\Connor\\Pictures\\animations\\$formattedDate-${AvoidanceWalker::class.java.simpleName}\\"
-      saveFrame("${animationDirectory}${AvoidanceWalker::class.java.simpleName}-######.png");
+      saveFrame("${animationDirectory}${AvoidanceWalker::class.java.simpleName}-######.png")
     }
   }
 
@@ -125,7 +125,6 @@ class AvoidanceWalker : PApplet() {
 
     buildInitialWalkerPoints(600f)
     buildInitialWalkerPoints(602f)
-
 
     buildInitialWalkerPoints(900f)
     buildInitialWalkerPoints(902f)
