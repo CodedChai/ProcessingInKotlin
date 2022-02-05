@@ -1,14 +1,11 @@
 package com.codedchai.sketch.animation
 
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
-import processing.core.PGraphics
 
-class CubeGrid : PApplet() {
+class CubeGrid : BaseSketch() {
 
   val maxScreenSize = 880
-  lateinit var cube: PGraphics
 
   val numCubesInRow = 11
   val numCubes = numCubesInRow * numCubesInRow
@@ -16,56 +13,48 @@ class CubeGrid : PApplet() {
   val cubeSize = (maxScreenSize / 2) / numCubesInRow.toFloat()
 
   override fun setup() {
-    cube = createGraphics(width, height, P3D)
-    smooth()
-    surface.setResizable(true)
-    surface.setLocation(100, 100)
+    super.setup()
+    pGraphics = createGraphics(width, height, P3D)
   }
 
   override fun settings() {
     size(maxScreenSize, maxScreenSize, P3D)
+    smooth(8)
   }
 
   override fun draw() {
     background(10)
 
-    runBlocking {
-      (0 until numCubes).forEach { index ->
-        launch {
-          drawCube(index)
-          image(cube, 0F, 0F)
-        }
-      }
+    (0 until numCubes).forEach { index ->
+      drawCube(index)
+      image(pGraphics, 0F, 0F)
     }
 
-    val animationDirectory = "C:\\Users\\Connor\\Pictures\\animations\\"
-    saveFrame("${animationDirectory}${CubeGrid::class.java.simpleName}-######.png");
-
-    if (frameCount == 720) {
-      exit()
-    }
+//    if (frameCount == 720) {
+//      exit()
+//    }
   }
 
   fun drawCube(index: Int) {
-    cube.beginDraw()
-    cube.clear()
+    pGraphics.beginDraw()
+    pGraphics.clear()
     // cube.lights()
-    cube.stroke(230)
-    cube.strokeWeight(3F)
-    cube.noFill()
+    pGraphics.stroke(230)
+    pGraphics.strokeWeight(3F)
+    pGraphics.noFill()
     val row = index / numCubesInRow
     val column = index % numCubesInRow
     val widthIncrement = width / numCubesInRow.toFloat()
     val heightIncrement = height / numCubesInRow.toFloat()
-    cube.translate(column * widthIncrement + cubeSize, row * heightIncrement + cubeSize)
+    pGraphics.translate(column * widthIncrement + cubeSize, row * heightIncrement + cubeSize)
     val maxRotation = PI * 2
     val xRotation = (maxRotation / numCubesInRow) * (row - numCubesInRow / 2) - PI
     val yRotation = (maxRotation / numCubesInRow) * (column - numCubesInRow / 2) - PI
-    cube.rotateX(radians(frameCount / 2.0F) + xRotation)
+    pGraphics.rotateX(radians(frameCount / 2.0F) + xRotation)
     //cube.rotateY((frameCount / 20.0F) + yRotation)
-    cube.rotateZ(radians(frameCount / 2.0F) + yRotation)
-    cube.box(cubeSize)
-    cube.endDraw()
+    pGraphics.rotateZ(radians(frameCount / 2.0F) + yRotation)
+    pGraphics.box(cubeSize)
+    pGraphics.endDraw()
   }
 }
 

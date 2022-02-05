@@ -3,12 +3,12 @@ package com.codedchai.sketch.circlepacking
 
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
 import processing.core.PImage
-import java.time.OffsetDateTime
 import kotlin.random.Random
 
-class CirclePackingFromImage : PApplet() {
+class CirclePackingFromImage : BaseSketch() {
 
   val colorScheme = RgbColorSchemeConstants.SOFT_AND_ROYAL
 
@@ -19,15 +19,16 @@ class CirclePackingFromImage : PApplet() {
 
   lateinit var random: Random
 
+  // TODO: Find better way to load in files...use resources directory in project??
   override fun setup() {
+    super.setup()
     circlePackingImage = loadImage("${imageDirectory}circle_packing_2.png", "png")
-    random = Random(circlePackingImage.pixelWidth + circlePackingImage.pixelHeight) // use resolution as the seed for some consistency
+    random =
+      Random(circlePackingImage.pixelWidth + circlePackingImage.pixelHeight) // use resolution as the seed for some consistency
     surface.setSize(circlePackingImage.pixelWidth, circlePackingImage.pixelHeight)
     noStroke()
     smooth()
     surface.setTitle("Random Circle Packing Pre-Computed From File")
-    surface.setResizable(true)
-    surface.setLocation(100, 100)
 
     while (circles.size <= 7000) {
       addCirclesRandomly()
@@ -48,8 +49,7 @@ class CirclePackingFromImage : PApplet() {
       circle(it.x, it.y, it.radius * 2f)
     }
 
-    val formattedDate = OffsetDateTime.now().toEpochSecond()
-    save("${imageDirectory}circle-packing-output-$formattedDate.png")
+    super.draw()
   }
 
   private fun addCirclesRandomly() {

@@ -1,15 +1,16 @@
 package com.codedchai.sketch.flowfield
 
 import com.codedchai.domain.Coordinate
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
 import java.util.*
 
-class EvenlySpacedFlowField : PApplet() {
+// TODO: Fix, one of the updates broke it
+class EvenlySpacedFlowField : BaseSketch() {
 
   override fun setup() {
+    super.setup()
     background(10)
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
     // visualizeGrid(buildNoiseGrid())
     noLoop()
   }
@@ -121,6 +122,7 @@ class EvenlySpacedFlowField : PApplet() {
     }
 
     drawLine(coordinateToStreamlineId.keys.toList())
+    super.draw()
   }
 }
 

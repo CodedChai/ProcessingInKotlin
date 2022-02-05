@@ -5,19 +5,15 @@ import com.codedchai.domain.Coordinate
 import com.codedchai.domain.Triangle
 import com.codedchai.extensions.backgroundColor
 import com.codedchai.extensions.drawTriangle
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
-import processing.core.PGraphics
-import java.time.OffsetDateTime
 
-class TriangleContainingTriangle : PApplet() {
+class TriangleContainingTriangle : BaseSketch() {
 
   val colorScheme = RgbColorSchemeConstants.GREEN_PASTELS
   val triangles = mutableListOf<Triangle>()
-  lateinit var pGraphics: PGraphics
 
   val sideLengthStep = 10f
-
-  val shouldSaveImage = true
 
   override fun draw() {
     pGraphics.beginDraw()
@@ -33,12 +29,8 @@ class TriangleContainingTriangle : PApplet() {
     //   pGraphics.filter(GRAY)
     pGraphics.endDraw()
 
-    if (shouldSaveImage) {
-      val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
-      val formattedDate = OffsetDateTime.now().toEpochSecond()
-      pGraphics.save("${imageDirectory}${TriangleContainingTriangle::class.java.simpleName}-$formattedDate.png")
-    }
     image(pGraphics, 0f, 0f)
+    super.draw()
   }
 
   fun buildTriangles(sideLength: Float) {
@@ -54,7 +46,11 @@ class TriangleContainingTriangle : PApplet() {
 
     (0..numColumns).forEach { columnNumber ->
       (0..numRows).forEach { rowNumber ->
-        buildTrianglesAtPoint(Coordinate(xStart + totalLength * columnNumber, yStart + totalHeight * rowNumber), sideLength, false)
+        buildTrianglesAtPoint(
+          Coordinate(xStart + totalLength * columnNumber, yStart + totalHeight * rowNumber),
+          sideLength,
+          false
+        )
       }
     }
 
@@ -71,11 +67,10 @@ class TriangleContainingTriangle : PApplet() {
   }
 
   override fun setup() {
+    super.setup()
     pGraphics = createGraphics(1000, 1000)
 
     background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
 
     buildTriangles(width / 15f)
 

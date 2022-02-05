@@ -1,14 +1,15 @@
 package com.codedchai.sketch.animation
 
 import com.codedchai.domain.Coordinate
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
 
-class PerlinSineWaves : PApplet() {
+class PerlinSineWaves : BaseSketch() {
 
   override fun setup() {
+    super.setup()
     background(10)
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
+    smooth()
   }
 
   fun sineWave(minY: Float, maxY: Float, frameCountScalarValue: Float = .01f): List<Coordinate> {
@@ -16,7 +17,11 @@ class PerlinSineWaves : PApplet() {
     for (x in 0..width step 2) {
       val mappedX = map(x.toFloat(), 0f, width.toFloat(), .5f * PI, 2.5f * PI)
       val scaledFrameCount = frameCount * frameCountScalarValue
-      val noiseOffset = noise(map(x.toFloat(), 0f, width.toFloat(), 0f, 10f) + scaledFrameCount, scaledFrameCount, minY - scaledFrameCount)
+      val noiseOffset = noise(
+        map(x.toFloat(), 0f, width.toFloat(), 0f, 10f) + scaledFrameCount,
+        scaledFrameCount,
+        minY - scaledFrameCount
+      )
       val y = map(sin(mappedX), -1f, 1f, minY, maxY) + noiseOffset * 70f
       sineWavePoints.add(Coordinate(x.toFloat(), y))
     }
@@ -35,7 +40,7 @@ class PerlinSineWaves : PApplet() {
   }
 
   override fun settings() {
-    size(1200, 1600, P2D)
+    size(1200, 1400, P2D)
   }
 
   fun getFrameCountScaleValue(isNegative: Boolean): Float {
@@ -53,6 +58,7 @@ class PerlinSineWaves : PApplet() {
       visualizePolygon(sineWave(startingY.toFloat(), startingY + 200f, getFrameCountScaleValue(isNegative)))
       isNegative = !isNegative
     }
+    super.draw()
   }
 }
 

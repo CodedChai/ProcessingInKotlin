@@ -1,16 +1,9 @@
 package com.codedchai.sketch.cityscape
 
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
-import processing.core.PGraphics
-import java.time.OffsetDateTime
 
-class MirroredCityscape : PApplet() {
-
-  lateinit var pGraphics: PGraphics
-
-  val shouldSaveImage = false
-  var shouldSaveAnimation = false
-  val formattedDate = OffsetDateTime.now().toEpochSecond()
+class MirroredCityscape : BaseSketch() {
 
   fun drawBoxMirrored(x: Float, z: Float) {
     val height = random(250f, 415f)
@@ -45,25 +38,15 @@ class MirroredCityscape : PApplet() {
     pGraphics.endDraw()
 
     image(pGraphics, 0f, 0f)
-
-    if (shouldSaveImage) {
-      val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
-      pGraphics.save("${imageDirectory}${MirroredCityscape::class.java.simpleName}-$formattedDate.png")
-    }
-
-    if (shouldSaveAnimation) {
-      val animationDirectory = "C:\\Users\\Connor\\Pictures\\animations\\$formattedDate-${MirroredCityscape::class.java.simpleName}\\"
-      saveFrame("${animationDirectory}${MirroredCityscape::class.java.simpleName}-######.png");
-    }
+    super.draw()
   }
 
   override fun setup() {
+    super.setup()
     pGraphics = createGraphics(width, height, P3D)
 
     background(0)
 
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
     noLoop()
   }
 

@@ -1,16 +1,16 @@
 package com.codedchai.sketch.flowfield
 
 import com.codedchai.domain.Coordinate
+import com.codedchai.sketch.BaseSketch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import processing.core.PApplet
 
-class ThickLineFlowField : PApplet() {
+class TriangleFanFlowField : BaseSketch() {
 
   override fun setup() {
+    super.setup()
     background(10)
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
     // visualizeGrid(buildNoiseGrid())
     noLoop()
   }
@@ -40,7 +40,12 @@ class ThickLineFlowField : PApplet() {
     return angleGrid
   }
 
-  fun makeFlowFieldLine(angleGrid: Map<Coordinate, Float>, startingCoordinate: Coordinate, step: Int, stepsToTake: Int): List<Coordinate> {
+  fun makeFlowFieldLine(
+    angleGrid: Map<Coordinate, Float>,
+    startingCoordinate: Coordinate,
+    step: Int,
+    stepsToTake: Int
+  ): List<Coordinate> {
     val flowLine = mutableListOf(startingCoordinate)
 
     var currentAngle = angleGrid[startingCoordinate]!!
@@ -74,7 +79,7 @@ class ThickLineFlowField : PApplet() {
     size(1000, 1000, P2D)
   }
 
-  override fun draw() {
+  override fun draw() = runBlocking {
     // background(111f, 123f, 229f)
     //  background(197f, 231f, 208f)
     //  background(174f, 15f, 250f)
@@ -83,17 +88,22 @@ class ThickLineFlowField : PApplet() {
     // visualizeGrid(angleGrid)
 
     val numLines = 200
-    runBlocking {
-      repeat(numLines) {
-        launch {
-          val flowLine = makeFlowFieldLine(angleGrid, Coordinate(random(0f, width.toFloat()).toInt(), random(0f, height.toFloat()).toInt()), random(3f, 10f).toInt(), random(5f, 90f).toInt())
-          drawFan(flowLine)
-        }
+
+    repeat(numLines) {
+      launch {
+        val flowLine = makeFlowFieldLine(
+          angleGrid,
+          Coordinate(random(0f, width.toFloat()).toInt(), random(0f, height.toFloat()).toInt()),
+          random(3f, 10f).toInt(),
+          random(5f, 90f).toInt()
+        )
+        drawFan(flowLine)
       }
     }
+    super.draw()
   }
 }
 
 fun main() {
-  PApplet.main("${ThickLineFlowField::class.java.packageName}.${ThickLineFlowField::class.java.simpleName}")
+  PApplet.main("${TriangleFanFlowField::class.java.packageName}.${TriangleFanFlowField::class.java.simpleName}")
 }

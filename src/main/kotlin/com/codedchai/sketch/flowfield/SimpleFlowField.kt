@@ -1,16 +1,16 @@
 package com.codedchai.sketch.flowfield
 
 import com.codedchai.domain.Coordinate
+import com.codedchai.sketch.BaseSketch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import processing.core.PApplet
 
-class SimpleFlowField : PApplet() {
+class SimpleFlowField : BaseSketch() {
 
   override fun setup() {
+    super.setup()
     background(10)
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
     // visualizeGrid(buildNoiseGrid())
     noLoop()
   }
@@ -40,7 +40,12 @@ class SimpleFlowField : PApplet() {
     return angleGrid
   }
 
-  fun makeFlowFieldLine(angleGrid: Map<Coordinate, Float>, startingCoordinate: Coordinate, step: Int, stepsToTake: Int): List<Coordinate> {
+  fun makeFlowFieldLine(
+    angleGrid: Map<Coordinate, Float>,
+    startingCoordinate: Coordinate,
+    step: Int,
+    stepsToTake: Int
+  ): List<Coordinate> {
     val flowLine = mutableListOf(startingCoordinate)
 
     var currentAngle = angleGrid[startingCoordinate]!!
@@ -74,20 +79,25 @@ class SimpleFlowField : PApplet() {
     size(1000, 1000, P2D)
   }
 
-  override fun draw() {
+  override fun draw() = runBlocking {
     background(10)
     val angleGrid = buildNoiseGrid()
     // visualizeGrid(angleGrid)
 
     val numLines = 3000
-    runBlocking {
-      repeat(numLines) {
-        launch {
-          val flowLine = makeFlowFieldLine(angleGrid, Coordinate(random(0f, width.toFloat()).toInt(), random(0f, height.toFloat()).toInt()), random(3f, 10f).toInt(), random(5f, 90f).toInt())
-          drawLine(flowLine)
-        }
+
+    repeat(numLines) {
+      launch {
+        val flowLine = makeFlowFieldLine(
+          angleGrid,
+          Coordinate(random(0f, width.toFloat()).toInt(), random(0f, height.toFloat()).toInt()),
+          random(3f, 10f).toInt(),
+          random(5f, 90f).toInt()
+        )
+        drawLine(flowLine)
       }
     }
+    super.draw()
   }
 }
 

@@ -4,20 +4,15 @@ import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Coordinate
 import com.codedchai.domain.Point
 import com.codedchai.domain.Vec2
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
 import processing.core.PGraphics
-import java.time.OffsetDateTime
 
 // https://www.reddit.com/r/generative/comments/pwi1ch/geometric_avoidance/
-class AvoidanceWalker : PApplet() {
+class AvoidanceWalker : BaseSketch() {
 
   val colorScheme = RgbColorSchemeConstants.SOFT_AND_ROYAL
   val points = mutableListOf<Point>()
-  lateinit var pGraphics: PGraphics
-
-  val shouldSaveImage = false
-  var shouldSaveAnimation = false
-  val formattedDate = OffsetDateTime.now().toEpochSecond()
 
   val directionalVectors = listOf(
     Vec2(1, 1),
@@ -49,16 +44,7 @@ class AvoidanceWalker : PApplet() {
     image(pGraphics, 0f, 0f)
 
     updatePoints(pGraphics)
-
-    if (shouldSaveImage) {
-      val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
-      pGraphics.save("${imageDirectory}${AvoidanceWalker::class.java.simpleName}-$formattedDate.png")
-    }
-
-    if (shouldSaveAnimation) {
-      val animationDirectory = "C:\\Users\\Connor\\Pictures\\animations\\$formattedDate-${AvoidanceWalker::class.java.simpleName}\\"
-      saveFrame("${animationDirectory}${AvoidanceWalker::class.java.simpleName}-######.png")
-    }
+    super.draw()
   }
 
   fun getPossibleNewCoordinates(point: Point): Coordinate {
@@ -91,16 +77,15 @@ class AvoidanceWalker : PApplet() {
     points.removeAll(pointsToRemove)
   }
 
-  override fun keyPressed() {
-    //  shouldSaveAnimation = !shouldSaveAnimation
-  }
-
   fun buildInitialWalkerPoints(radius: Float) {
 
     for (theta in 0..360 step 1) {
       points.add(
         Point(
-          coordinate = Coordinate(width / 2 + radius * sin(radians(theta.toFloat())), height / 2 + radius * cos(radians(theta.toFloat()))),
+          coordinate = Coordinate(
+            width / 2 + radius * sin(radians(theta.toFloat())),
+            height / 2 + radius * cos(radians(theta.toFloat()))
+          ),
           direction = directionalVectors.random(),
           color = colorScheme.randomColor()
         )

@@ -4,18 +4,14 @@ import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Coordinate
 import com.codedchai.domain.Triangle
 import com.codedchai.extensions.drawTriangle
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
-import processing.core.PGraphics
-import java.time.OffsetDateTime
 
-class GrowingTriangles : PApplet() {
+// TODO: Fix, one of the updates broke it
+class GrowingTriangles : BaseSketch() {
 
   val colorScheme = RgbColorSchemeConstants.SOFT_AND_ROYAL
   val triangles = mutableListOf<Triangle>()
-  lateinit var pGraphics: PGraphics
-
-  val shouldSaveImage = false
-  var shouldSaveAnimation = false
 
   override fun draw() {
     pGraphics.beginDraw()
@@ -34,22 +30,7 @@ class GrowingTriangles : PApplet() {
     updateTriangles()
 
     image(pGraphics, 0f, 0f)
-
-    if (shouldSaveImage) {
-      val imageDirectory = "C:\\Users\\Connor\\Pictures\\"
-      val formattedDate = OffsetDateTime.now().toEpochSecond()
-      pGraphics.save("${imageDirectory}${GrowingTriangles::class.java.simpleName}-$formattedDate.png")
-    }
-
-    if (shouldSaveAnimation) {
-      val animationDirectory = "C:\\Users\\Connor\\Pictures\\animations\\"
-      val formattedDate = OffsetDateTime.now().toEpochSecond()
-      saveFrame("${animationDirectory}${GrowingTriangles::class.java.simpleName}-$formattedDate-######.png");
-    }
-  }
-
-  override fun keyPressed() {
-    shouldSaveAnimation = !shouldSaveAnimation
+    super.draw()
   }
 
   fun updateTriangles() {
@@ -76,13 +57,17 @@ class GrowingTriangles : PApplet() {
   }
 
   override fun setup() {
+    super.setup()
     pGraphics = createGraphics(1000, 1000)
 
     background(colorScheme.backgroundColor!!.r, colorScheme.backgroundColor.g, colorScheme.backgroundColor.b)
-    surface.setResizable(true)
-    surface.setLocation(0, 0)
 
-    buildInitialTriangles(Coordinate(0f, 0f), 10f, width.toFloat() * 3f, 50f)
+    buildInitialTriangles(
+      centerPoint = Coordinate(0f, 0f),
+      sideLength = 10f,
+      maxSideLength = width.toFloat() * 3f,
+      sideLengthStep = 50f
+    )
   }
 
   override fun settings() {

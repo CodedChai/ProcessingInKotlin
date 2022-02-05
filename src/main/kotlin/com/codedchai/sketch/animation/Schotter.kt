@@ -5,8 +5,6 @@ import com.codedchai.domain.Square
 import com.codedchai.extensions.drawSquare
 import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
-import processing.core.PGraphics
-import java.time.OffsetDateTime
 
 class Schotter : BaseSketch() {
 
@@ -22,7 +20,7 @@ class Schotter : BaseSketch() {
 
     image(pGraphics, 0f, 0f)
 
-    saveImageOutput(false, false)
+    super.draw()
   }
 
   fun generateSchotterGrid(width: Int, height: Int, sideLength: Float, margin: Float): List<Square> {
@@ -48,7 +46,7 @@ class Schotter : BaseSketch() {
   }
 
   override fun settings() {
-    size(1300, 1700, P2D)
+    size(1200, 1400, P2D)
   }
 }
 

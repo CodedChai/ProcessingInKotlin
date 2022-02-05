@@ -4,12 +4,13 @@ import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle
 import com.codedchai.domain.Coordinate
 import com.codedchai.extensions.addIfNotNull
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
 import kotlin.random.Random
 
-class CirclePackingInArbitraryPolygon : PApplet() {
+class CirclePackingInArbitraryPolygon : BaseSketch() {
 
-  val maxScreenSize = 1600
+  val maxScreenSize = 1400
   val random = Random(maxScreenSize) // use resolution as the seed for some consistency
 
   val colorScheme = RgbColorSchemeConstants.GREEN_PASTELS
@@ -17,7 +18,11 @@ class CirclePackingInArbitraryPolygon : PApplet() {
   val circleColorsSize = colorScheme.colors.size
   val circles: MutableList<Circle> = mutableListOf()
 
-  val triangleOnLeftPolygon = listOf(Coordinate(maxScreenSize / 16f, maxScreenSize / 16f), Coordinate(maxScreenSize * .5f, maxScreenSize * .25f), Coordinate(maxScreenSize * .125f, maxScreenSize * .875f))
+  val triangleOnLeftPolygon = listOf(
+    Coordinate(maxScreenSize / 16f, maxScreenSize / 16f),
+    Coordinate(maxScreenSize * .5f, maxScreenSize * .25f),
+    Coordinate(maxScreenSize * .125f, maxScreenSize * .875f)
+  )
   val kShapePolygon = listOf(
     Coordinate(maxScreenSize * .125f, 100f),
     Coordinate(maxScreenSize * .75f, maxScreenSize / 16f),
@@ -26,16 +31,20 @@ class CirclePackingInArbitraryPolygon : PApplet() {
     Coordinate(maxScreenSize * .125f, maxScreenSize * .8f)
   )
   val anotherShapePolygon =
-    listOf(Coordinate(maxScreenSize * .25f, 0f), Coordinate(maxScreenSize * 1f, maxScreenSize * 0.1f), Coordinate(maxScreenSize * .9f, maxScreenSize * .9f), Coordinate(maxScreenSize * .5f, maxScreenSize * .95f))
+    listOf(
+      Coordinate(maxScreenSize * .25f, 0f),
+      Coordinate(maxScreenSize * 1f, maxScreenSize * 0.1f),
+      Coordinate(maxScreenSize * .9f, maxScreenSize * .9f),
+      Coordinate(maxScreenSize * .5f, maxScreenSize * .95f)
+    )
 
   val polygons: List<List<Coordinate>> = listOf(triangleOnLeftPolygon, kShapePolygon, anotherShapePolygon)
 
   override fun setup() {
+    super.setup()
     noStroke()
     smooth()
     surface.setTitle("Circle Packing Arbitrary Shapes")
-    surface.setResizable(true)
-    surface.setLocation(100, 100)
 
     val circlesPerPolygon = 1200
 
@@ -65,6 +74,7 @@ class CirclePackingInArbitraryPolygon : PApplet() {
       fill(it.color.r, it.color.g, it.color.b)
       circle(it.x, it.y, it.radius * 2f)
     }
+    super.draw()
   }
 
   fun polygonContainsPoint(polygonVertexCoordinates: List<Coordinate>, testX: Float, testY: Float): Boolean {
@@ -191,7 +201,13 @@ class CirclePackingInArbitraryPolygon : PApplet() {
     return circlesInPolygon
   }
 
-  fun addCircleIfNoCollision(x: Float, y: Float, radius: Float, polygon: List<Coordinate>, circlesInPolygon: List<Circle>): Circle? {
+  fun addCircleIfNoCollision(
+    x: Float,
+    y: Float,
+    radius: Float,
+    polygon: List<Coordinate>,
+    circlesInPolygon: List<Circle>
+  ): Circle? {
     val color = colorScheme.colors[random.nextInt(circleColorsSize)]
 
     val circle = Circle(x, y, radius, color)

@@ -2,10 +2,11 @@ package com.codedchai.sketch.circlepacking
 
 import com.codedchai.constants.RgbColorSchemeConstants
 import com.codedchai.domain.Circle
+import com.codedchai.sketch.BaseSketch
 import processing.core.PApplet
 import kotlin.random.Random
 
-class CirclePackingRandomlyPreComputed : PApplet() {
+class CirclePackingRandomlyPreComputed : BaseSketch() {
 
   val maxScreenSize = 1600
   val random = Random(maxScreenSize) // use resolution as the seed for some consistency
@@ -16,11 +17,10 @@ class CirclePackingRandomlyPreComputed : PApplet() {
   val circles: MutableList<Circle> = mutableListOf()
 
   override fun setup() {
+    super.setup()
     noStroke()
     smooth()
     surface.setTitle("Random Circle Packing Pre-Computed")
-    surface.setResizable(true)
-    surface.setLocation(100, 100)
 
     while (circles.size <= 6000) {
       addCirclesRandomly()
@@ -40,6 +40,8 @@ class CirclePackingRandomlyPreComputed : PApplet() {
       fill(it.color.r, it.color.g, it.color.b)
       circle(it.x, it.y, it.radius * 2f)
     }
+
+    super.draw()
   }
 
   private fun addCirclesRandomly() {
