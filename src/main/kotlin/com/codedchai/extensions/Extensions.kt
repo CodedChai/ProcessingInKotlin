@@ -36,7 +36,7 @@ fun PGraphics.drawTriangle(triangle: Triangle, xTranslate: Float = 0f, yTranslat
 
 fun PGraphics.drawSquare(square: Square, xTranslate: Float = 0f, yTranslate: Float = 0f) {
   this.pushMatrix()
-  this.translate(xTranslate, yTranslate)
+  this.translate(square.xTranslate + xTranslate, square.yTranslate + yTranslate)
   this.rotate(PApplet.radians(square.rotation))
   this.fill(square.color.r, square.color.g, square.color.b)
   this.stroke(square.color.r, square.color.g, square.color.b)
