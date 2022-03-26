@@ -1,9 +1,7 @@
 package com.codedchai.extensions
 
-import com.codedchai.domain.Circle
-import com.codedchai.domain.RgbColorScheme
-import com.codedchai.domain.Square
-import com.codedchai.domain.Triangle
+import com.codedchai.domain.*
+import com.codedchai.domain.schotter.SchotterStone
 import processing.core.PApplet
 import processing.core.PGraphics
 
@@ -42,5 +40,16 @@ fun PGraphics.drawSquare(square: Square, xTranslate: Float = 0f, yTranslate: Flo
   this.stroke(square.color.r, square.color.g, square.color.b)
 
   this.square(square.x, square.y, square.sideLength)
+  this.popMatrix()
+}
+
+fun PGraphics.drawSchotterStone(schotterStone: SchotterStone, xTranslate: Float = 0f, yTranslate: Float = 0f) {
+  this.pushMatrix()
+  this.translate(schotterStone.xTranslate + xTranslate, schotterStone.yTranslate + yTranslate)
+  this.rotate(PApplet.radians(schotterStone.rotation))
+  this.fill(schotterStone.color.r, schotterStone.color.g, schotterStone.color.b)
+  this.stroke(schotterStone.color.r, schotterStone.color.g, schotterStone.color.b)
+
+  this.square(schotterStone.x, schotterStone.y, schotterStone.sideLength)
   this.popMatrix()
 }

@@ -21,7 +21,7 @@ import com.codedchai.domain.RgbColorScheme
 class RgbColorSchemeConstants {
   companion object {
     val GREEN_PASTELS = RgbColorScheme(
-      backgroundColor = RgbColorConstants.ALABASTAR,
+      backgroundColor = RgbColorConstants.ALABASTER,
       colors = listOf(
         RgbColorConstants.DARK_SEA_GREEN,
         RgbColorConstants.MILK,
@@ -32,7 +32,7 @@ class RgbColorSchemeConstants {
     )
 
     val LOVERS_SUNSET = RgbColorScheme(
-      backgroundColor = RgbColorConstants.ALABASTAR,
+      backgroundColor = RgbColorConstants.ALABASTER,
       colors = listOf(
         CORN_YELLOW,
         ORANGE_RED,

@@ -21,8 +21,8 @@ abstract class BaseSketch : PApplet() {
   private val imageDirectory = "${baseSketchDirectory}images${separator}"
   private val animationDirectory = "${baseSketchDirectory}animations${separator}${formattedDate}${separator}"
 
-  var shouldSaveImage: Boolean = false
-  var shouldSaveAnimation: Boolean = false
+  var shouldSaveImage = false
+  var shouldSaveAnimation = false
 
   override fun draw() {
     if (shouldSaveImage) {

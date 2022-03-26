@@ -9,7 +9,7 @@ class RgbColorConstants {
     val DESERT_SAND = RgbColor(221f, 211f, 172f)
     val MILK = RgbColor(255f, 253f, 246f)
     val TAUPE_GRAY = RgbColor(138f, 137f, 133f)
-    val ALABASTAR = RgbColor(237f, 234f, 228f)
+    val ALABASTER = RgbColor(237f, 234f, 228f)
 
     val CORN_YELLOW = RgbColor(253f, 202f, 83f)
     val ORANGE_RED = RgbColor(245f, 103f, 37f)
