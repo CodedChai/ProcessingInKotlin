@@ -19,6 +19,7 @@ class PrimeNumberSpiral : BaseSketch() {
 
   override fun draw() {
     drawAllPrimesThatFitOnScreen()
+    shouldSaveImage = true
 
     super.draw()
     noLoop()
@@ -78,7 +79,7 @@ class PrimeNumberSpiral : BaseSketch() {
   }
 
   override fun settings() {
-    size(1400, 1400, P2D)
+    size(1600, 1600, P2D)
   }
 }
 

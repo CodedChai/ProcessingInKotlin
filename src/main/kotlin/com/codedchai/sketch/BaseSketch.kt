@@ -32,7 +32,7 @@ abstract class BaseSketch : PApplet() {
 
       val filename = "${imageDirectory}$sketchName-$formattedDate.png"
       println("Saving $filename")
-      pGraphics.save(filename)
+      save(filename)
       shouldSaveImage = false
     }
 
