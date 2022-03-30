@@ -8,7 +8,7 @@ import processing.core.PVector
 
 class MandelBulb : BaseSketch() {
 
-  val VOXEL_RESOLUTION = 128
+  val VOXEL_RESOLUTION = 256
   lateinit var cam: PeasyCam
 
   val mandelBulbPoints = mutableListOf<PVector>()
@@ -21,6 +21,7 @@ class MandelBulb : BaseSketch() {
     }
 //    super.draw()
 
+    println(frameRate)
   }
 
   fun buildMandleBulbPoints() {
@@ -39,9 +40,11 @@ class MandelBulb : BaseSketch() {
           val n = 16f
           while (true) {
             val sphericalZeta = spherical(zeta.x, zeta.y, zeta.z)
-            val newX = pow(sphericalZeta.r, n) * sin(sphericalZeta.theta * n) * cos(sphericalZeta.phi * n)
-            val newY = pow(sphericalZeta.r, n) * sin(sphericalZeta.theta * n) * sin(sphericalZeta.phi * n)
-            val newZ = pow(sphericalZeta.r, n) * cos(sphericalZeta.theta * n)
+            val rToTheN = pow(sphericalZeta.r, n)
+            val rToTheNTimesSinOfThetaTimesN = rToTheN * sin(sphericalZeta.theta * n)
+            val newX = rToTheNTimesSinOfThetaTimesN * cos(sphericalZeta.phi * n)
+            val newY = rToTheNTimesSinOfThetaTimesN * sin(sphericalZeta.phi * n)
+            val newZ = rToTheN * cos(sphericalZeta.theta * n)
 
             zeta.x = newX + x
             zeta.y = newY + y
@@ -84,12 +87,12 @@ class MandelBulb : BaseSketch() {
     buildMandleBulbPoints()
 
 
-    cam = PeasyCam(this, 1500.0)
+    cam = PeasyCam(this, 700.0)
 
   }
 
   override fun settings() {
-    size(1600, 1600, P3D)
+    size(800, 800, P3D)
   }
 }
 
